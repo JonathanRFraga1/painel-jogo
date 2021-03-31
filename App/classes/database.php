@@ -44,7 +44,7 @@ class Database
 
         for ($i = 0; $i < $num_params; $i++) {
             if ($i != ($num_params - 1)) {
-                $sql .= ":" . $fields_array[$i] . ', ';
+                $sql .= ':' . $fields_array[$i] . ', ';
             } else {
                 $sql .= ':' . $fields_array[$i] . ');';
             }
@@ -81,6 +81,47 @@ class Database
             for ($i = 1; $i <= $num_params; $i++) {
                 $query->bindParam($i, $params[$i - 1]);
             }
+        }
+
+        $query->execute();
+
+        return $query;
+    }
+
+    /**
+     * Função responsavel por atualizar os dados no banco de dados
+     *
+     * @param string $table
+     * @param string $field_where
+     * @param string $value_were
+     * @param array $params
+     * @return bool
+     */
+    public function update(string $table, string $field_where, string $value_were, array $params)
+    {
+        $sql = "UPDATE " . $table . " SET ";
+
+        $num_params = count($params);
+
+        $fields_array = array_keys($params);
+
+        for ($i = 0; $i < $num_params; $i++) {
+            if ($i != ($num_params - 1)) {
+                $sql .=  $fields_array[$i] . '= :' . $fields_array[$i] . ' , ';
+            } else {
+                $sql .= $fields_array[$i] . '= :' . $fields_array[$i];
+            }
+        }
+
+        $sql .= ' WHERE ' . $field_where . ' = ' . $value_were;
+
+        $values = array_values($params);
+
+        $query = $this->connection->prepare($sql);
+
+        for ($i = 0; $i < $num_params; $i++) {
+            $token = ':' . $fields_array[$i];
+            $query->bindParam($token, $values[$i]);
         }
 
         $query->execute();

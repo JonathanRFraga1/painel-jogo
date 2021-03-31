@@ -34,3 +34,12 @@ $database = new Database();
 // if ($query) {
 //     echo "Cadastro realizado com sucesso";
 // }
+
+// $query = $database->update(
+//     'users',
+//     'id',
+//     '1',
+//     [
+//         'nickname' => 'jonathan'
+//     ]
+// );
