@@ -6,6 +6,31 @@ use App\Classes\Database;
 
 $database = new Database();
 
-$query = $database->query("SELECT * FROM users");
+// $query = $database->query(
+//     "SELECT
+//         *
+//     FROM
+//         users
+//     WHERE
+//         nickname = ?",
+//     ['zerowin']
+// );
 
-var_dump($query);
+// $query = $database->query("SELECT * FROM users");
+
+// $query = $query->fetchAll(PDO::FETCH_ASSOC);
+
+// print_r($query);
+
+// $query = $database->insert(
+//     "users",
+//     [
+//         "nickname" => "zerowin",
+//         "email" => "admin@gmail.com",
+//         "senha" => "1234"
+//     ]
+// );
+
+// if ($query) {
+//     echo "Cadastro realizado com sucesso";
+// }
