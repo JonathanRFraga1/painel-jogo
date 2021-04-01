@@ -27,7 +27,7 @@ class Database
     }
 
     /**
-     * Função responsavel por inserir dados no banco
+     * Função responsavel por inserir registros no banco de dados
      *
      * @param string $table
      * @param array $params
@@ -89,7 +89,7 @@ class Database
     }
 
     /**
-     * Função responsavel por atualizar os dados no banco de dados
+     * Função responsavel por atualizar os registros no banco de dados
      *
      * @param string $table
      * @param string $field_where
@@ -127,5 +127,24 @@ class Database
         $query->execute();
 
         return $query;
+    }
+
+    /**
+     * Função responsável pela exclusão de registros no banco de dados
+     *
+     * @param string $table
+     * @param string $where_field
+     * @param string $where_value
+     * @return bool
+     */
+    public function delete(string $table, string $where_field, string $where_value)
+    {
+        $sql = "DELETE FROM " . $table . " WHERE " . $where_field . " = :" . $where_field;
+
+        $query = $this->connection->prepare($sql);
+
+        $query->bindParam(':' . $where_field, $where_value);
+
+        return $query->execute();
     }
 }

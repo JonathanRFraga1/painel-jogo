@@ -25,8 +25,8 @@ $database = new Database();
 // $query = $database->insert(
 //     "users",
 //     [
-//         "nickname" => "zerowin",
-//         "email" => "admin@gmail.com",
+//         "nickname" => "teste",
+//         "email" => "aaaaa@gmail.com",
 //         "senha" => "1234"
 //     ]
 // );
@@ -43,3 +43,21 @@ $database = new Database();
 //         'nickname' => 'jonathan'
 //     ]
 // );
+
+// $query = $database->delete("users", "id", "2");
+
+// var_dump($query);
+
+if (isset($_GET['url'])) {
+    $url = explode('/', $_GET['url']);
+
+    $file = './App/controllers/' . $url[0] . '-controller.php';
+
+    if (file_exists($file)) {
+        require_once $file;
+    } else {
+        require_once './404.php';
+    }
+} else {
+    require_once './App/controllers/home-controller.php';
+}
