@@ -15,11 +15,11 @@ class Database
 
     public function __construct()
     {
-        $this->hostname = "localhost:8000";
-        $this->dbtype = "mysql";
-        $this->dbname = "forca";
-        $this->user = "root";
-        $this->pass = "";
+        $this->hostname = DB_HOST;
+        $this->dbtype = DB_TYPE;
+        $this->dbname = DB_NAME;
+        $this->user = DB_USER;
+        $this->pass = DB_PASS;
 
         $dsn = $this->dbtype . ':hostname=' . $this->hostname . ';dbname=' . $this->dbname;
 
