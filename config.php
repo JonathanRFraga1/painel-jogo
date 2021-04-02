@@ -12,4 +12,4 @@ define('DB_USER', 'root');
 
 define('DB_PASS', '');
 
-define('HOME_URI', 'localhost/painel');
+define('HOME_URI', 'http://localhost/painel');

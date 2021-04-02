@@ -5,7 +5,10 @@
 
     "autoload": {
         "psr-4": {
-            "App\\" : "App/"
+            "App\\" : "app/"
         }
+    },
+    "config": {
+        "optimize-autoloader": false
     }
 }

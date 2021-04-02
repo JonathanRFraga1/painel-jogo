@@ -1,6 +1,8 @@
 <?php
 
-require_once 'vendor/autoload.php';
+use App\Controllers\HomeController;
+
+require_once __DIR__ . '/vendor/autoload.php';
 
 require_once './config.php';
 
@@ -8,14 +10,16 @@ require_once './config.php';
 if (isset($_GET['url'])) {
     $url = explode('/', $_GET['url']);
 
-    $file = './App/controllers/' . $url[0] . '-controller.php';
+    $file = './app/Controllers/' . $url[0] . 'Controller.php';
 
     // Verifica se a controller existe
     if (file_exists($file)) {
         // Caso exista, carrega o arquivo;
         require_once $file;
 
-        $controller_name = "App\\Controllers\\" . $url[0] . 'Controller';
+        $controller_name = ucfirst($url[0]) .  'Controller';
+
+        $controller_name = "App\\Controllers\\" . $controller_name;
 
         // Cria um objeto da controller
         $controller = new $controller_name();
@@ -42,5 +46,7 @@ if (isset($_GET['url'])) {
     }
 } else {
     // Caso não tenha recebido carrega a home
-    require_once './App/controllers/home-controller.php';
+    require_once './app/Controllers/HomeController.php';
+    $home = new HomeController();
+    $home->index();
 }
