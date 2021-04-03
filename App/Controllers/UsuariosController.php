@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Classes\GlobalFunctions;
 
-class HomeController extends GlobalFunctions
+class UsuariosController extends GlobalFunctions
 {
     private object $model;
 
@@ -14,13 +14,13 @@ class HomeController extends GlobalFunctions
             header('Location:' . HOME_URI . '/login');
         }
 
-        $this->model = $this->loadModel('HomeModel');
+        $this->model = $this->loadModel('UsuariosModel');
     }
 
     public function index()
     {
         require_once ABSPATH . '/App/views/_includes/header.php';
-        require_once ABSPATH . '/App/views/home/home-view.php';
+        require_once ABSPATH . '/App/views/usuarios/usuarios-view.php';
         require_once ABSPATH . '/App/views/_includes/footer.php';
     }
 }

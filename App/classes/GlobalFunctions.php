@@ -5,6 +5,20 @@ namespace App\Classes;
 class GlobalFunctions
 {
     /**
+     * Variavel para indexação da página
+     *
+     * @var string
+     */
+    public $robots = 'noindex,nofollow';
+
+    /**
+     * Variável de título da página
+     *
+     * @var string
+     */
+    public $title = 'Document';
+
+    /**
      * Verificação de login do usuário
      *
      * @return boolean

@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use PDO;
 use App\Classes\Database;
 
-class HomeModel
+class JogadoresModel
 {
     private object $db;
 

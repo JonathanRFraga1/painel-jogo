@@ -6,9 +6,17 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 require_once './config.php';
 
+if (session_status() == 1) {
+    session_start();
+}
+
 // Verifica se recebeu algum parametro
 if (isset($_GET['url'])) {
     $url = explode('/', $_GET['url']);
+
+    foreach ($url as $key => $str) {
+        $url[$key] = str_replace('-', '', $str);
+    }
 
     $file = './app/Controllers/' . $url[0] . 'Controller.php';
 

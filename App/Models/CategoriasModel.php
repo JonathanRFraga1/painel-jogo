@@ -5,7 +5,7 @@ namespace App\Models;
 use PDO;
 use App\Classes\Database;
 
-class HomeModel
+class CategoriasModel
 {
     private object $db;
 
