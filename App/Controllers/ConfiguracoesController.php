@@ -19,8 +19,8 @@ class ConfiguracoesController extends GlobalFunctions
 
     public function index()
     {
-        require_once ABSPATH . '/App/views/_includes/header.php';
-        require_once ABSPATH . '/App/views/configuracoes/configuracoes-view.php';
-        require_once ABSPATH . '/App/views/_includes/footer.php';
+        require_once ABSPATH . '/app/views/_includes/header.php';
+        require_once ABSPATH . '/app/views/configuracoes/configuracoes-view.php';
+        require_once ABSPATH . '/app/views/_includes/footer.php';
     }
 }

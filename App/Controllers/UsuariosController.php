@@ -19,8 +19,8 @@ class UsuariosController extends GlobalFunctions
 
     public function index()
     {
-        require_once ABSPATH . '/App/views/_includes/header.php';
-        require_once ABSPATH . '/App/views/usuarios/usuarios-view.php';
-        require_once ABSPATH . '/App/views/_includes/footer.php';
+        require_once ABSPATH . '/app/views/_includes/header.php';
+        require_once ABSPATH . '/app/views/usuarios/usuarios-view.php';
+        require_once ABSPATH . '/app/views/_includes/footer.php';
     }
 }
