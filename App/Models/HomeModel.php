@@ -7,7 +7,7 @@ use App\Classes\Database;
 
 class HomeModel
 {
-    private object $db;
+    private $db;
 
     public function __construct()
     {

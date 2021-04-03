@@ -4,7 +4,7 @@ use App\Controllers\HomeController;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-require_once './config.php';
+require_once __DIR__ . '/config.php';
 
 if (session_status() == 1) {
     session_start();
@@ -18,7 +18,7 @@ if (isset($_GET['url'])) {
         $url[$key] = str_replace('-', '', $str);
     }
 
-    $file = './app/Controllers/' . $url[0] . 'Controller.php';
+    $file = __DIR__ . '/app/Controllers/' . ucfirst($url[0]) . 'Controller.php';
 
     // Verifica se a controller existe
     if (file_exists($file)) {
@@ -36,13 +36,21 @@ if (isset($_GET['url'])) {
         if (isset($url[1]) && $url[1] != '' && $url[1] != 'null') {
             $function = $url[1];
 
+            $function = explode('-', $function);
+
+            foreach ($function as $key => $string) {
+                $function[$key] = ucfirst($string);
+            }
+
+            $function = implode("", $function);
+
             // Verifica se o método existe
             if (method_exists($controller, $function)) {
                 // Caso o método exista, chama ele
                 $controller->$function();
             } else {
                 // Caso o contrário exibe a página de erro
-                require_once './404.php';
+                require_once __DIR__ . '/404.php';
             }
         } else {
             // Caso não esteja chamando um função carrega o index
@@ -50,11 +58,11 @@ if (isset($_GET['url'])) {
         }
     } else {
         // Caso não exista a controller carrega a página de erro
-        require_once './404.php';
+        require_once __DIR__ . '/404.php';
     }
 } else {
     // Caso não tenha recebido carrega a home
-    require_once './app/Controllers/HomeController.php';
+    require_once __DIR__ . '/app/Controllers/HomeController.php';
     $home = new HomeController();
     $home->index();
 }

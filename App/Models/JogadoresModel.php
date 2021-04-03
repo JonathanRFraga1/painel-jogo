@@ -6,7 +6,7 @@ use App\Classes\Database;
 
 class JogadoresModel
 {
-    private object $db;
+    private $db;
 
     public function __construct()
     {

@@ -7,7 +7,7 @@ use App\Classes\Database;
 
 class CategoriasModel
 {
-    private object $db;
+    private $db;
 
     public function __construct()
     {

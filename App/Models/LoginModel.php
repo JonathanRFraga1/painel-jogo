@@ -7,7 +7,7 @@ use App\Classes\Database;
 
 class LoginModel
 {
-    private object $db;
+    private $db;
 
     public function __construct()
     {
