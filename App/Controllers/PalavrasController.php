@@ -6,7 +6,7 @@ use App\Classes\GlobalFunctions;
 
 class PalavrasController extends GlobalFunctions
 {
-    private object $model;
+    private $model;
 
     public function __construct()
     {
