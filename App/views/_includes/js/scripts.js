@@ -8,10 +8,13 @@
  */
 function exibeNotificacao(title, content, type) {
     let notification = $('#notification-alert');
-    $('#title-notification').html(title);
-    $('#message-notification').html(content);
+
     notification.addClass(type);
     notification.addClass('show');
+
+    $('#title-notification').html(title);
+    $('#title-notification').html(title);
+    $('#message-notification').html(content);
     setTimeout(() => {
         notification.removeClass('show');
     }, 5000);

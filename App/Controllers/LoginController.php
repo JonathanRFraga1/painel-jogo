@@ -34,7 +34,7 @@ class LoginController extends GlobalFunctions
         }
 
         $model = $this->loadModel('LoginModel');
-        $retorno = $model->retornaClienteLogin($params['login']);
+        $retorno = $model->retornaUsuarioLogin($params['login']);
 
         if (!$retorno) {
             header($_SERVER['SERVER_PROTOCOL'] . ' 500 Usuario nao encontrado', true, 500);

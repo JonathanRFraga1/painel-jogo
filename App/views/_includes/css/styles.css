@@ -13,6 +13,69 @@
     display: none !important;
 }
 
+.bt {
+    font-size: .9rem;
+    padding: .5rem;
+    margin: .5rem;
+    border-radius: 5px;
+    color: #FFF;
+    font-weight: 400;
+    border: 1px solid #FFF
+}
+
+.bt.bt-primary{
+    background-color: #235fa3;
+}
+
+.bt.bt-success {
+    background-color: #24a77b;
+}
+
+.bt.bt-warning {
+    background-color: #ebbb1d;
+}
+
+.bt.bt-danger {
+    background-color: #db4444;
+}
+
+.bt:focus,
+.bt:active {
+    outline: none;
+}
+
+.bt.bt-primary:hover,
+.bt.bt-primary:focus,
+.bt.bt-primary:active {
+    background-color: #106ed8;
+    border-color: #106ed8;
+    box-shadow: #106ed8 0 0 5px 2px;
+}
+
+.bt.bt.bt-success:hover,
+.bt.bt-success:focus,
+.bt.bt-success:active {
+    background-color: #27be8c;
+    border-color: #27be8c;
+    box-shadow: #27be8c 0 0 5px 2px;
+}
+
+.bt.bt.bt-warning:hover,
+.bt.bt-warning:focus,
+.bt.bt-warning:active {
+    background-color: #f8c008;
+    border-color: #f8c008;
+    box-shadow: #f8c008 0 0 5px 2px;
+}
+
+.bt.bt-danger:hover,
+.bt.bt-danger:focus,
+.bt.bt-danger:active {
+    background-color: #e91e1e;
+    border-color: #e91e1e;
+    box-shadow: #e91e1e 0 0 5px 2px;
+}
+
 html {
     width: 100vw;
     height: 100vh;
@@ -24,6 +87,7 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background-color: #e4e4e4;
 }
 
 main {
@@ -35,18 +99,22 @@ header {
     width: 100%;
     height: 10%;
     background-color: #4a90e2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
 }
 
 header #bt-main-menu {
     position: absolute;
     z-index: 99;
-    margin-top: 1.5%;
-    margin-left: 1.5%;
     font-size: 1.3rem;
     border: none;
     background-color: transparent;
+    padding: .5rem;
     color: #FFF;
-    width: 2%;
+    left: 1rem;
 }
 
 header #bt-main-menu:hover,
@@ -138,7 +206,7 @@ nav.show {
     transition: all .5s;
 }
 
-.notification.show{
+.notification.show {
     right: 1%;
     visibility: initial;
 }
@@ -160,6 +228,139 @@ nav.show {
     background-color: #ebbb1d;
 }
 
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 5%;
+}
+
+section.panel {
+    width: 90%;
+    background-color: #FFF;
+    border-radius: 10px;
+    box-shadow: #c4c5c7 0 0 5px 2px;
+    padding: .5rem;
+}
+
+section.panel div.title{
+    width: 50%;
+    text-align: left;
+    padding-left: 5%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+section.panel div.title h1{
+    width: 100%;
+    font-size: 1.3rem;
+}
+
+section.panel div.controls-main{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+    width: 90%;
+}
+
+form div label {
+    font-weight: 500;
+}
+
+form div input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #aeaeaf;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    font-size: 1rem;
+    padding: .5rem;
+}
+
+form div input:focus{
+    outline: none;
+    border-bottom: 2px solid #000;
+}
+
+form div.controls {
+    flex-direction: row;
+    justify-content: left;
+    margin-bottom: 1rem;
+}
+
+form hr {
+    border-top: 1px solid #c4c5c7;
+    width: 90%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+section.panel div.controls-main form.busca {
+    width: 30% !important;
+    align-items: flex-end;
+}
+
+section.panel div.controls-main form.busca input {
+    border: none;
+    border-bottom: 1px solid #aeaeaf;
+    width: 100%;
+    font-size: 1rem;
+    padding: .5rem;
+}
+
+section.panel div.controls-main form.busca input:active,
+section.panel div.controls-main form.busca input:focus {
+    outline: none;
+    border-bottom: 2px solid #000;
+}
+
+section.panel div.table{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+section.panel div.table table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+section.panel div.table table tr{
+    border-bottom: 1px solid #aeaeaf;
+}
+
+section.panel div.table table tr td {
+    text-align: center;
+    padding: .5rem;
+}
+
+section.panel div.table table thead tr td {
+    font-weight: 600;
+}
+
 @media(min-width:721px) {
     nav {
         width: 20%;
@@ -169,6 +370,27 @@ nav.show {
     .notification {
         width: 20%;
         right: -26%;
+    }
+
+    section.panel div.title{
+        width: 19%;
+        text-align: right;
+    }
+
+    form div {
+        flex-direction: row;
+        margin-top: 1rem;
+        align-items: center;
+    }
+
+    form div label {
+        width: 20%;
+        text-align: right;
+        margin-right: 5%;
+    }
+
+    form div input {
+        width: 75%;
     }
 }
 

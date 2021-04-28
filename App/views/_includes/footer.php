@@ -12,5 +12,17 @@
             $('#bt-main-menu').attr('aria-label', 'clique para ocultar o menu do sistema');
         }
     });
+
+        <?php
+        if (!empty($this->notification)) {
+            ?>
+            exibeNotificacao(
+                '<?= $this->notification['title']?>',
+                '<?= $this->notification['content']?>',
+                '<?= $this->notification['type']?>'
+            );
+            <?php
+        }
+        ?>
 </script>
 </html>

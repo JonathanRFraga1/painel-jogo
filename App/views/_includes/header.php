@@ -20,7 +20,10 @@
         <button id="bt-main-menu" aria-label="clique para exibir o menu do sistema">
             <i class="fas fa-bars"></i>
         </button>
+
+        <h2>Jogo da Forca</h2>
     </header>
+
     <nav role="navigation" id="main-menu">
         <ul>
             <li>
@@ -62,7 +65,7 @@
         </ul>
     </nav>
 
-    <div class="notification" id="notification-alert" role="alert">
-        <p class="title" id="title-notification">Testando</p>
-        <p id="message-notification">Notification</p>
+    <div class="notification" id="notification-alert">
+        <p class="title" id="title-notification" role="alert">Testando</p>
+        <p id="message-notification" role="alert">Notification</p>
     </div>

@@ -20,7 +20,7 @@ class LoginModel
      * @param string $email
      * @return bool|array
      */
-    public function retornaClienteLogin(string $email)
+    public function retornaUsuarioLogin(string $email)
     {
         $query = $this->db->query(
             "SELECT

@@ -19,6 +19,13 @@ class GlobalFunctions
     public $title = 'Document';
 
     /**
+     * Variável com os dados para a exibição da notificação
+     *
+     * @var array
+     */
+    public $notification = array();
+
+    /**
      * Verificação de login do usuário
      *
      * @return boolean
@@ -48,6 +55,22 @@ class GlobalFunctions
             return new $namespace();
         } else {
             die("Arquivo não encontrado");
+        }
+    }
+
+    /**
+     * Método para detcção de requisições POST
+     *
+     * @return boolean
+     */
+    public function isPost()
+    {
+        $type = $_SERVER['REQUEST_METHOD'];
+
+        if ($type == 'POST') {
+            return true;
+        } else {
+            return false;
         }
     }
 }
