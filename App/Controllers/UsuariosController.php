@@ -3,24 +3,33 @@
 namespace App\Controllers;
 
 use App\Classes\GlobalFunctions;
+use App\Models\UsuariosModel;
+use Exception;
 
 class UsuariosController extends GlobalFunctions
 {
-    private $model;
+    private ?object $defaultModel;
 
     public function __construct()
     {
+        parent::__construct();
+
+
         if (!$this->isLogged()) {
-            header('Location:' . HOME_URI . '/login');
+            $this->redirect(HOME_URI . '/login');
         }
 
-        $this->model = $this->loadModel('UsuariosModel');
+        try {
+            $this->defaultModel = new UsuariosModel();
+        } catch (Exception $e) {
+            $this->error = $e;
+            $this->includeViews('_includes/errors/error_500');
+            exit;
+        }
     }
 
     public function index()
     {
-        require_once ABSPATH . '/app/views/_includes/header.php';
-        require_once ABSPATH . '/app/views/usuarios/usuarios-view.php';
-        require_once ABSPATH . '/app/views/_includes/footer.php';
+        $this->includeViews('usuarios/usuarios-view');
     }
 }

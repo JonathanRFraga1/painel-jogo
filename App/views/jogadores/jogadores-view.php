@@ -17,12 +17,14 @@
         <div class="table">
             <table>
                 <thead>
-                    <td>ID</td>
-                    <td>Nickname</td>
-                    <td>Pontuação</td>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nickname</th>
+                        <th>Pontuação</th>
+                    </tr>
                 </thead>
                 <tbody id="tbody">
-                <?php foreach ($this->jogadores as $jogador) {?>
+                <?php foreach ($this->content->jogadores as $jogador) {?>
                     <tr>
                         <td><?= $jogador['id']?></td>
                         <td><?= $jogador['nickname']?></td>
@@ -39,6 +41,7 @@
 <script>
     $('#form-busca').submit((event) => {
         event.preventDefault();
+        let tbody = $('#tbody');
         $.ajax({
             url : '<?= HOME_URI?>/jogadores/busca-texto',
             data : {
@@ -50,11 +53,11 @@
 
                 console.log(data);
 
-                $('#tbody').html('');
+                tbody.html('');
 
                 for (let i in data) {
                     let jogador = data[i];
-                    $('#tbody').append(
+                    tbody.append(
                         `<tr>
                             <td>${jogador.id}</td>
                             <td>${jogador.nickname}</td>

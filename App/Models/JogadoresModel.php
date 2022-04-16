@@ -2,17 +2,15 @@
 
 namespace App\Models;
 
+use App\Abstracts\AbstractModel;
 use PDO;
-use App\Classes\Database;
 use Throwable;
 
-class JogadoresModel
+class JogadoresModel extends AbstractModel
 {
-    private $db;
-
     public function __construct()
     {
-        $this->db = new Database();
+        parent::__construct();
     }
 
     /**
@@ -20,13 +18,11 @@ class JogadoresModel
      *
      * @return array|bool
      */
-    public function retornaJogadores()
+    public function retornaJogadores(): bool|array
     {
         $query = $this->db->query("SELECT * FROM players");
 
-        $query = $query->fetchAll(PDO::FETCH_ASSOC);
-
-        return $query;
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -35,7 +31,7 @@ class JogadoresModel
      * @param string $string
      * @return array|bool
      */
-    public function retornaJogadoresString($string)
+    public function retornaJogadoresString(string $string): bool|array
     {
         $string = '%' . $string . '%';
         $query = $this->db->query(
@@ -49,9 +45,7 @@ class JogadoresModel
             [$string, $string]
         );
 
-        $query = $query->fetchAll(PDO::FETCH_ASSOC);
-
-        return $query;
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -60,7 +54,7 @@ class JogadoresModel
      * @param array $values
      * @return string
      */
-    public function insereJogador($values)
+    public function insereJogador(array $values): string
     {
         if (!isset($values['login']) || $values['login'] == '') {
             return 'E-mail não enviado';

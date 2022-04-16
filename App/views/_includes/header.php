@@ -11,9 +11,9 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="robots" content="<?= $this->robots?>">
     <title><?= $this->title?></title>
-    <link rel="stylesheet" href="<?= HOME_URI?>/app/views/_includes/fontAwesome/css/all.min.css">
-    <link rel="stylesheet" href="<?= HOME_URI?>/app/views/_includes/css/styles.css">
-    <script src="<?= HOME_URI?>/app/views/_includes/js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="<?= HOME_URI?>/App/views/_includes/fontAwesome/css/all.min.css">
+    <link rel="stylesheet" href="<?= HOME_URI?>/App/views/_includes/css/styles.css">
+    <script src="<?= HOME_URI?>/App/views/_includes/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <header>
@@ -60,6 +60,12 @@
                 <a href="<?= HOME_URI?>/configuracoes">
                     <i class="fas fa-sliders-h"></i>
                     Configurações
+                </a>
+            </li>
+            <li>
+                <a href="<?= HOME_URI?>/login/sair">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Sair
                 </a>
             </li>
         </ul>

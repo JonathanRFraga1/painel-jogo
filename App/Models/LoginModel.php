@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
+use App\Abstracts\AbstractModel;
 use PDO;
-use App\Classes\Database;
 
-class LoginModel
+class LoginModel extends AbstractModel
 {
-    private $db;
-
     public function __construct()
     {
-        $this->db = new Database();
+        parent::__construct();
     }
 
     /**
@@ -20,7 +18,7 @@ class LoginModel
      * @param string $email
      * @return bool|array
      */
-    public function retornaUsuarioLogin(string $email)
+    public function retornaUsuarioLogin(string $email): bool|array
     {
         $query = $this->db->query(
             "SELECT
@@ -45,10 +43,10 @@ class LoginModel
      * Função responsável por efetuar o login
      *
      * @param string $senha
-     * @param string $data
+     * @param array $data
      * @return bool
      */
-    public function realizaLogin(string $senha, array $data)
+    public function realizaLogin(string $senha, array $data): bool
     {
         if (password_verify($senha, $data['senha'])) {
             unset($data['senha']);
@@ -59,5 +57,11 @@ class LoginModel
         } else {
             return false;
         }
+    }
+
+    public function realizaLogout()
+    {
+        unset($_SESSION['user']);
+        $this->redirect(HOME_URI . '/login');
     }
 }

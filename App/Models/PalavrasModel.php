@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
+use App\Abstracts\AbstractModel;
 use PDO;
-use App\Classes\Database;
 
-class PalavrasModel
+class PalavrasModel extends AbstractModel
 {
-    private $db;
-
     public function __construct()
     {
-        $this->db = new Database();
+       parent::__construct();
     }
 }

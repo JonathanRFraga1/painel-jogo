@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
+use App\Abstracts\AbstractModel;
 use PDO;
-use App\Classes\Database;
 
-class UsuariosModel
+class UsuariosModel extends AbstractModel
 {
-    private $db;
-
     public function __construct()
     {
-        $this->db = new Database();
+        parent::__construct();
     }
 
     public function retornaUsers()

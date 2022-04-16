@@ -2,25 +2,31 @@
 
 namespace App\Controllers;
 
-use App\Classes\GlobalFunctions;
+use App\Abstracts\AbstractController;
+use App\Models\CategoriasModel;
+use Exception;
 
-class CategoriasController extends GlobalFunctions
+class CategoriasController extends AbstractController
 {
-    private $model;
+    private ?object $defaultModel;
 
     public function __construct()
     {
+        parent::__construct();
+
         if (!$this->isLogged()) {
-            header('Location:' . HOME_URI . '/login');
+            $this->redirect(HOME_URI . '/login');
         }
 
-        $this->model = $this->loadModel('CategoriasModel');
+        try {
+            $this->defaultModel = new CategoriasModel();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
     }
 
     public function index()
     {
-        require_once ABSPATH . '/app/views/_includes/header.php';
-        require_once ABSPATH . '/app/views/categorias/categorias-view.php';
-        require_once ABSPATH . '/app/views/_includes/footer.php';
+        $this->includeViews('categorias/categorias-view');
     }
 }

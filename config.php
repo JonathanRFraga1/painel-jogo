@@ -1,15 +1,17 @@
 <?php
 
-define('ABSPATH', __DIR__);
+const DEBUG = true;
 
-define('DB_NAME', 'forca');
+const ABSPATH = __DIR__;
 
-define('DB_HOST', 'localhost');
+const DB_NAME = 'forca';
 
-define('DB_TYPE', 'mysql');
+const DB_HOST = 'localhost';
 
-define('DB_USER', 'root');
+const DB_TYPE = 'mysql';
 
-define('DB_PASS', '');
+const DB_USER = 'root';
 
-define('HOME_URI', 'http://localhost/painel-jogo');
+const DB_PASS = '';
+
+const HOME_URI = 'http://localhost/painel-jogo';

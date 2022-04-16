@@ -4,14 +4,28 @@ namespace App\Classes;
 
 use PDO;
 
+/**
+ * Classe Database
+ * @author Jonathan Rossetto de Fraga
+ * @version 1.0
+ * @package App\Classes
+ *
+ * Classe responsável por fazer a conexão com o banco de dados
+ */
 class Database
 {
-    private $hostname;
-    private $dbtype;
-    private $dbname;
-    private $user;
-    private $pass;
-    private $connection;
+    private string $hostname;
+    private string $dbtype;
+    private string $dbname;
+    private string $user;
+    private string $pass;
+    private PDO $connection;
+
+    /**
+     * Ultimo id inserido no banco de dados
+     * @var int $lastInsertId
+     */
+    public int $lastInsertId;
 
     public function __construct()
     {
@@ -21,6 +35,7 @@ class Database
         $this->user = DB_USER;
         $this->pass = DB_PASS;
 
+        // DataSourceName
         $dsn = $this->dbtype . ':hostname=' . $this->hostname . ';dbname=' . $this->dbname;
 
         $this->connection = new PDO($dsn, $this->user, $this->pass);
@@ -33,7 +48,7 @@ class Database
      * @param array $params
      * @return bool
      */
-    public function insert(string $table, array $params)
+    public function insert(string $table, array $params): bool
     {
         $fields_array = array_keys($params);
         $fields = implode(', ', $fields_array);
@@ -61,6 +76,8 @@ class Database
 
         $execute = $query->execute();
 
+        $this->lastInsertId = $this->connection->lastInsertId();
+
         return $execute;
     }
 
@@ -71,7 +88,7 @@ class Database
      * @param array $params
      * @return object
      */
-    public function query(string $query_string, array $params = [])
+    public function query(string $query_string, array $params = []): object
     {
         $query = $this->connection->prepare($query_string);
 
@@ -97,7 +114,7 @@ class Database
      * @param array $params
      * @return bool
      */
-    public function update(string $table, string $field_where, string $value_were, array $params)
+    public function update(string $table, string $field_where, string $value_were, array $params): bool
     {
         $sql = "UPDATE " . $table . " SET ";
 
@@ -137,7 +154,7 @@ class Database
      * @param string $where_value
      * @return bool
      */
-    public function delete(string $table, string $where_field, string $where_value)
+    public function delete(string $table, string $where_field, string $where_value): bool
     {
         $sql = "DELETE FROM " . $table . " WHERE " . $where_field . " = :" . $where_field;
 

@@ -2,20 +2,37 @@
 
 namespace App\Controllers;
 
-use App\Classes\GlobalFunctions;
+use App\Abstracts\AbstractController;
+use App\Models\LoginModel;
+use Exception;
 
-class LoginController extends GlobalFunctions
+class LoginController extends AbstractController
 {
+    public ?object $defaultModel;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        try {
+            $this->defaultModel = new LoginModel();
+        } catch (Exception $e) {
+            $this->error = $e;
+            $this->includeViews('_includes/errors/error_500');
+            exit;
+        }
+    }
+
     public function index()
     {
         if ($this->isLogged()) {
-            header('Location:' . HOME_URI);
+            $this->redirect(HOME_URI);
         }
 
         $this->robots = "index,nofollow";
         $this->title = "Login";
 
-        require_once ABSPATH . '/app/views/login/login-view.php';
+        $this->includeViews('login/login-view', false);
     }
 
     public function efetuaLogin()
@@ -33,8 +50,7 @@ class LoginController extends GlobalFunctions
             return;
         }
 
-        $model = $this->loadModel('LoginModel');
-        $retorno = $model->retornaUsuarioLogin($params['login']);
+        $retorno = $this->defaultModel->retornaUsuarioLogin($params['login']);
 
         if (!$retorno) {
             header($_SERVER['SERVER_PROTOCOL'] . ' 500 Usuario nao encontrado', true, 500);
@@ -42,12 +58,19 @@ class LoginController extends GlobalFunctions
             return;
         }
 
-        $retorno = $model->realizaLogin($params['senha'], $retorno);
+        $retorno = $this->defaultModel->realizaLogin($params['senha'], $retorno);
 
         if (!$retorno) {
             header($_SERVER['SERVER_PROTOCOL'] . ' 500 Senha Incorreta', true, 500);
             echo 'Senha Incorreta';
             return;
+        }
+    }
+
+    public function sair()
+    {
+        if ($this->isLogged()) {
+            $this->defaultModel->realizaLogout();
         }
     }
 }

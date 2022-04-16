@@ -2,25 +2,33 @@
 
 namespace App\Controllers;
 
-use App\Classes\GlobalFunctions;
+use App\Abstracts\AbstractController;
+use App\Models\HomeModel;
+use Exception;
 
-class HomeController extends GlobalFunctions
+class HomeController extends AbstractController
 {
-    private $model;
+    private ?object $defaultModel;
 
     public function __construct()
     {
+        parent::__construct();
+
         if (!$this->isLogged()) {
-            header('Location:' . HOME_URI . '/login');
+            $this->redirect(HOME_URI . '/login');
         }
 
-        $this->model = $this->loadModel('HomeModel');
+        try {
+            $this->defaultModel = new HomeModel();
+        } catch (Exception $e) {
+            $this->error = $e;
+            $this->includeViews('_includes/errors/error_500');
+            exit;
+        }
     }
 
     public function index()
     {
-        require_once ABSPATH . '/app/views/_includes/header.php';
-        require_once ABSPATH . '/app/views/home/home-view.php';
-        require_once ABSPATH . '/app/views/_includes/footer.php';
+        $this->includeViews('home/home-view');
     }
 }

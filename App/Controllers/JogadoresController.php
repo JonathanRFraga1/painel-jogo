@@ -2,30 +2,39 @@
 
 namespace App\Controllers;
 
-use App\Classes\GlobalFunctions;
+use App\Abstracts\AbstractController;
+use App\Models\JogadoresModel;
+use Exception;
 
-class JogadoresController extends GlobalFunctions
+class JogadoresController extends AbstractController
 {
-    private $model;
+    private ?object $defaultModel;
 
     public function __construct()
     {
+        parent::__construct();
+
+
         if (!$this->isLogged()) {
-            header('Location:' . HOME_URI . '/login');
+            $this->redirect(HOME_URI . '/login');
         }
 
-        $this->model = $this->loadModel('JogadoresModel');
+        try {
+            $this->defaultModel = new JogadoresModel();
+        } catch (Exception $e) {
+            $this->error = $e;
+            $this->includeViews('_includes/errors/error_500');
+            exit;
+        }
     }
 
     public function index()
     {
         $this->title = 'Jogadores';
 
-        $this->jogadores = $this->model->retornaJogadores();
+        $this->content->jogadores = $this->defaultModel->retornaJogadores();
 
-        require_once ABSPATH . '/app/views/_includes/header.php';
-        require_once ABSPATH . '/app/views/jogadores/jogadores-view.php';
-        require_once ABSPATH . '/app/views/_includes/footer.php';
+        $this->includeViews('jogadores/jogadores-view');
     }
 
     public function inserir()
@@ -33,7 +42,7 @@ class JogadoresController extends GlobalFunctions
         $this->title = 'Cadastrar Jogador';
 
         if ($this->isPost()) {
-            $resposta = $this->model->insereJogador($_POST);
+            $resposta = $this->defaultModel->insereJogador($_POST);
 
             if ($resposta == 'sucesso') {
                 $this->notification['type'] = 'success';
@@ -46,9 +55,7 @@ class JogadoresController extends GlobalFunctions
             }
         }
 
-        require_once ABSPATH . '/app/views/_includes/header.php';
-        require_once ABSPATH . '/app/views/jogadores/inserir.php';
-        require_once ABSPATH . '/app/views/_includes/footer.php';
+        $this->includeViews('jogadores/inserir');
     }
 
     public function buscaTexto()
@@ -59,7 +66,7 @@ class JogadoresController extends GlobalFunctions
             return;
         }
 
-        $retorno = $this->model->retornaJogadoresString($_POST['texto']);
+        $retorno = $this->defaultModel->retornaJogadoresString($_POST['texto']);
 
         echo json_encode($retorno);
     }

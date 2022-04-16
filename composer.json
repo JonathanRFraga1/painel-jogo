@@ -1,11 +1,13 @@
 {
     "require": {
-        "squizlabs/php_codesniffer": "*"
+        "squizlabs/php_codesniffer": "*",
+      "ext-pdo": "*",
+        "symfony/var-dumper": "^5.4"
     },
 
     "autoload": {
         "psr-4": {
-            "App\\" : "app/"
+            "App\\" : "App/"
         }
     },
     "config": {

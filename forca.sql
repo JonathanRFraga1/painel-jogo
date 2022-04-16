@@ -21,6 +21,10 @@ SET time_zone = "+00:00";
 -- Banco de dados: `forca`
 --
 
+CREATE DATABASE IF NOT EXISTS `forca` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+USE `forca`;
+
 -- --------------------------------------------------------
 
 --
