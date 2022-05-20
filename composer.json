@@ -2,7 +2,8 @@
     "require": {
         "squizlabs/php_codesniffer": "*",
       "ext-pdo": "*",
-        "symfony/var-dumper": "^5.4"
+        "symfony/var-dumper": "^5.4",
+        "ext-curl": "*"
     },
 
     "autoload": {

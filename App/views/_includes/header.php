@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Jonathan Rossetto de Fraga">
     <meta name="description" content="Painel de controle para o jogo da forca">
-    <meta namm="keywords" content="Painel, controle, painel do jogo">
+    <meta name="keywords" content="Painel, controle, painel do jogo">
     <meta http-equiv="content-language" content="pt-br">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="robots" content="<?= $this->robots?>">
