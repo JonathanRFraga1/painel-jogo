@@ -8,6 +8,9 @@ use Exception;
 
 class JogadoresController extends AbstractController
 {
+    /**
+     * @var object|JogadoresModel|mixed|null
+     */
     private ?object $defaultModel;
 
     public function __construct()
@@ -20,7 +23,7 @@ class JogadoresController extends AbstractController
         }
 
         try {
-            $this->defaultModel = new JogadoresModel();
+            $this->defaultModel = $this->loadModel(JogadoresModel::class);
         } catch (Exception $e) {
             $this->error = $e;
             $this->includeViews('_includes/errors/error_500');

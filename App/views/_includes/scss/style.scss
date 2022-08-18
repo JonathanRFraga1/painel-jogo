@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+// MainColors
+$maincolor: #4a90e2;
+
+$primaryColor: #235fa3;
+
+$successColor: #24a77b;
+
+$warningColor: #f8c008;
+
+$dangerColor: #e91e1e;
+
+$branco: #FFF;
+
+$preto: #000;
+
+$brancoSecundario: #c4c5c7;
+
+$cinza: #aeaeaf;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    &:focus {
+        outline-color: $maincolor;
+    }
+}
+
+@mixin button($class, $color) {
+    &.#{$class} {
+        background-color: $color;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $color;
+            border-color: $color;
+            box-shadow: $color 0 0 5px 2px;
+        }
+    }
+}
+
+.bt {
+    font-size: .9rem;
+    padding: .5rem;
+    margin: .5rem;
+    border-radius: 5px;
+    color: $branco;
+    font-weight: 400;
+    border: 1px solid $branco;
+
+    &:focus,
+    &:active {
+        outline: none;
+    }
+
+    @include button("primary", $primaryColor);
+
+    @include button("success", $successColor);
+
+    @include button("warning", $warningColor);
+
+    @include button("danger", $dangerColor);
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #e4e4e4;
+}
+
+header {
+    width: 100%;
+    height: 10%;
+    background-color: $maincolor;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: $branco;
+
+    #bt-main-menu {
+        position: absolute;
+        z-index: 99;
+        font-size: 1.3rem;
+        border: none;
+        background-color: transparent;
+        padding: .5rem;
+        color: $branco;
+        left: 1rem;
+
+        &:hover,
+        &:focus {
+            outline: none;
+            background-color: $primaryColor;
+        }
+
+        &:active {
+            outline: none;
+            background-color: $primaryColor;
+            color: $brancoSecundario;
+        }
+    }
+}
+
+nav {
+    position: absolute;
+    z-index: 98;
+    width: 45%;
+    background-color: $primaryColor;
+    color: $branco;
+    height: 100%;
+    transition: all .5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 4rem;
+    left: -45%;
+    visibility: hidden;
+
+    @media (min-width: 721px) {
+        width: 20%;
+        left: -20%;
+    }
+
+    &.show {
+        left: 0;
+        visibility: initial;
+    }
+
+    ul {
+        list-style: none;
+        width: 100%;
+
+        li {
+            width: 100%;
+            height: 15%;
+
+            a {
+                width: 95%;
+                height: 100%;
+                padding-top: 5%;
+                padding-left: 5%;
+                margin-top: 5%;
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 1.3rem;
+                color: $branco;
+                text-decoration: none;
+
+                &:focus,
+                &:hover {
+                    width: 95%;
+                    outline: none;
+                    background-color: $primaryColor;
+                }
+
+                &:active {
+                    outline: none;
+                    background-color: $primaryColor;
+                    color: $brancoSecundario;
+                }
+
+                i {
+                    width: 20%;
+                }
+            }
+        }
+    }
+}
+
+.notification {
+    position: absolute;
+    z-index: 99;
+    right: -46%;
+    top: 6%;
+    width: 40%;
+    color: $branco;
+    padding: .5rem;
+    border-radius: 5px;
+    box-shadow: $brancoSecundario 0 0 5px 2px;
+    visibility: hidden;
+    transition: all .5s;
+
+    @media (min-width: 721px) {
+        width: 20%;
+        right: -26%;
+    }
+
+    &.show {
+        right: 1%;
+        visibility: initial;
+    }
+
+    &.success {
+        background-color: $successColor;
+    }
+
+    &.warning {
+        background-color: $warningColor;
+    }
+
+    &.error {
+        background-color: $dangerColor;
+    }
+
+    p.title {
+        margin-bottom: .5rem;
+        font-weight: bold;
+    }
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 5%;
+}
+
+section.panel {
+    width: 90%;
+    background-color: $branco;
+    border-radius: 10px;
+    box-shadow: $brancoSecundario 0 0 5px 2px;
+    padding: .5rem;
+    margin-bottom: 2rem;
+
+    div {
+        &.title {
+            width: 50%;
+            text-align: left;
+            padding-left: 5%;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+
+            @media(min-width: 721px) {
+                width: 30%;
+                text-align: right;
+            }
+
+            h1 {
+                width: 100%;
+                font-size: 1.3rem;
+            }
+        }
+
+        &.controls-main {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        &.table {
+            width: 95%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+            margin-left: 1rem;
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+
+                thead tr td {
+                    font-weight: 600;
+                }
+
+                tr {
+                    border-bottom: 1px solid $cinza;
+                }
+
+                td {
+                    text-align: center;
+                    padding: .5rem;
+                }
+            }
+        }
+    }
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: baseline;
+        width: 90%;
+        margin-top: 1rem;
+
+        label {
+            font-weight: 500;
+        }
+
+        input,
+        select {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid $cinza;
+            margin-top: .5rem;
+            margin-bottom: .5rem;
+            font-size: 1rem;
+            padding: .5rem;
+
+            &:focus {
+                outline: none;
+                border-bottom: 2px solid $preto;
+            }
+        }
+
+        hr {
+            border-top: 1px solid $brancoSecundario;
+            width: 90%;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        &.controls {
+            flex-direction: row;
+            justify-content: left;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+section.panel {
+    div.controls-main form.busca {
+        width: 30% !important;
+        align-items: flex-end;
+
+        input {
+            border: none;
+            border-bottom: 1px solid $cinza;
+            width: 100%;
+            font-size: 1rem;
+            padding: .5rem;
+
+            &:active,
+            &:focus {
+                outline: none;
+                border-bottom: 2px solid $preto;
+            }
+        }
+    }
+
+    div.table {
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        margin-left: 1rem;
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+            tr {
+                border-bottom: 1px solid $cinza;
+
+                td {
+                    text-align: center;
+                    padding: .5rem;
+                }
+            }
+
+            thead {
+                tr {
+                    td {
+
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+}

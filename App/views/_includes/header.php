@@ -12,8 +12,10 @@
     <meta name="robots" content="<?= $this->robots?>">
     <title><?= $this->title?></title>
     <link rel="stylesheet" href="<?= HOME_URI?>/App/views/_includes/fontAwesome/css/all.min.css">
-    <link rel="stylesheet" href="<?= HOME_URI?>/App/views/_includes/css/styles.css">
+    <link rel="stylesheet" href="<?= HOME_URI?>/App/views/_includes/scss/style.css">
     <script src="<?= HOME_URI?>/App/views/_includes/js/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
 </head>
 <body>
     <header>

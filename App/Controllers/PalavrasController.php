@@ -3,12 +3,16 @@
 namespace App\Controllers;
 
 use App\Classes\GlobalFunctions;
+use App\Models\LoginModel;
 use App\Models\PalavrasModel;
 use Exception;
 
 class PalavrasController extends GlobalFunctions
 {
-    private ?object $defaultModel;
+    /**
+     * @var LoginModel
+     */
+    private LoginModel $defaultModel;
 
     public function __construct()
     {
@@ -20,7 +24,7 @@ class PalavrasController extends GlobalFunctions
         }
 
         try {
-            $this->defaultModel = new PalavrasModel();
+            $this->defaultModel = $this->loadModel(LoginModel::class);
         } catch (Exception $e) {
             $this->error = $e;
             $this->includeViews('_includes/errors/error_500');

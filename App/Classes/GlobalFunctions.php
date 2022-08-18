@@ -3,6 +3,7 @@
 namespace App\Classes;
 
 use Exception;
+use Throwable;
 use JetBrains\PhpStorm\Pure;
 use stdClass;
 
@@ -53,7 +54,7 @@ class GlobalFunctions
      *
      * @return boolean
      */
-    public function isLogged():bool
+    public function isLogged(): bool
     {
         if (isset($_SESSION['user'])) {
             return true;
@@ -67,7 +68,7 @@ class GlobalFunctions
      *
      * @return boolean
      */
-    public function isPost():bool
+    public function isPost(): bool
     {
         $type = $_SERVER['REQUEST_METHOD'];
 
@@ -80,11 +81,12 @@ class GlobalFunctions
 
     /**
      * Método para inclusão de views
+     *
      * @param string $view
      * @return void
      * @throws Exception
      */
-    public function returnView(string $view):void
+    public function returnView(string $view): void
     {
         if (file_exists(ABSPATH . "/app/views/$view.php")) {
             require_once ABSPATH . "/app/views/$view.php";
@@ -95,10 +97,11 @@ class GlobalFunctions
 
     /**
      * Método para inclusão de lotes views
+     *
      * @param array|string $views
      * @return void
      */
-    public function includeViews(array|string $views, bool $includes = true):void
+    public function includeViews(array|string $views, bool $includes = true): void
     {
         try {
             if ($includes) {
@@ -122,8 +125,31 @@ class GlobalFunctions
         }
     }
 
-    public function redirect(string $url):void
+    /**
+     * Função responsável por redirecionamento
+     *
+     * @param string $url
+     * @return void
+     */
+    public function redirect(string $url): void
     {
         header("Location: $url");
+    }
+
+    /**
+     * Função responsável por incluir as models
+     *
+     * @param string $modelName
+     * @return mixed
+     */
+    public function loadModel(string $modelName): mixed
+    {
+        try {
+            return new $modelName();
+        } catch (Throwable $th) {
+            $this->error = $th;
+            $this->returnView('_includes/errors/error_500');
+        }
+        return false;
     }
 }

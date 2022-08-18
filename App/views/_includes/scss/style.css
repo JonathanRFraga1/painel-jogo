@@ -1,0 +1,345 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*:focus {
+  outline-color: #4a90e2;
+}
+
+.bt {
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 5px;
+  color: #FFF;
+  font-weight: 400;
+  border: 1px solid #FFF;
+}
+.bt:focus, .bt:active {
+  outline: none;
+}
+.bt.primary {
+  background-color: #235fa3;
+}
+.bt.primary:hover, .bt.primary:focus, .bt.primary:active {
+  background-color: #235fa3;
+  border-color: #235fa3;
+  box-shadow: #235fa3 0 0 5px 2px;
+}
+.bt.success {
+  background-color: #24a77b;
+}
+.bt.success:hover, .bt.success:focus, .bt.success:active {
+  background-color: #24a77b;
+  border-color: #24a77b;
+  box-shadow: #24a77b 0 0 5px 2px;
+}
+.bt.warning {
+  background-color: #f8c008;
+}
+.bt.warning:hover, .bt.warning:focus, .bt.warning:active {
+  background-color: #f8c008;
+  border-color: #f8c008;
+  box-shadow: #f8c008 0 0 5px 2px;
+}
+.bt.danger {
+  background-color: #e91e1e;
+}
+.bt.danger:hover, .bt.danger:focus, .bt.danger:active {
+  background-color: #e91e1e;
+  border-color: #e91e1e;
+  box-shadow: #e91e1e 0 0 5px 2px;
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #e4e4e4;
+}
+
+header {
+  width: 100%;
+  height: 10%;
+  background-color: #4a90e2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #FFF;
+}
+header #bt-main-menu {
+  position: absolute;
+  z-index: 99;
+  font-size: 1.3rem;
+  border: none;
+  background-color: transparent;
+  padding: 0.5rem;
+  color: #FFF;
+  left: 1rem;
+}
+header #bt-main-menu:hover, header #bt-main-menu:focus {
+  outline: none;
+  background-color: #235fa3;
+}
+header #bt-main-menu:active {
+  outline: none;
+  background-color: #235fa3;
+  color: #c4c5c7;
+}
+
+nav {
+  position: absolute;
+  z-index: 98;
+  width: 45%;
+  background-color: #235fa3;
+  color: #FFF;
+  height: 100%;
+  transition: all 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 4rem;
+  left: -45%;
+  visibility: hidden;
+}
+@media (min-width: 721px) {
+  nav {
+    width: 20%;
+    left: -20%;
+  }
+}
+nav.show {
+  left: 0;
+  visibility: initial;
+}
+nav ul {
+  list-style: none;
+  width: 100%;
+}
+nav ul li {
+  width: 100%;
+  height: 15%;
+}
+nav ul li a {
+  width: 95%;
+  height: 100%;
+  padding-top: 5%;
+  padding-left: 5%;
+  margin-top: 5%;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.3rem;
+  color: #FFF;
+  text-decoration: none;
+}
+nav ul li a:focus, nav ul li a:hover {
+  width: 95%;
+  outline: none;
+  background-color: #235fa3;
+}
+nav ul li a:active {
+  outline: none;
+  background-color: #235fa3;
+  color: #c4c5c7;
+}
+nav ul li a i {
+  width: 20%;
+}
+
+.notification {
+  position: absolute;
+  z-index: 99;
+  right: -46%;
+  top: 6%;
+  width: 40%;
+  color: #FFF;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: #c4c5c7 0 0 5px 2px;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+@media (min-width: 721px) {
+  .notification {
+    width: 20%;
+    right: -26%;
+  }
+}
+.notification.show {
+  right: 1%;
+  visibility: initial;
+}
+.notification.success {
+  background-color: #24a77b;
+}
+.notification.warning {
+  background-color: #f8c008;
+}
+.notification.error {
+  background-color: #e91e1e;
+}
+.notification p.title {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 5%;
+}
+
+section.panel {
+  width: 90%;
+  background-color: #FFF;
+  border-radius: 10px;
+  box-shadow: #c4c5c7 0 0 5px 2px;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+}
+section.panel div.title {
+  width: 50%;
+  text-align: left;
+  padding-left: 5%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+@media (min-width: 721px) {
+  section.panel div.title {
+    width: 30%;
+    text-align: right;
+  }
+}
+section.panel div.title h1 {
+  width: 100%;
+  font-size: 1.3rem;
+}
+section.panel div.controls-main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+section.panel div.table {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+section.panel div.table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+section.panel div.table table thead tr td {
+  font-weight: 600;
+}
+section.panel div.table table tr {
+  border-bottom: 1px solid #aeaeaf;
+}
+section.panel div.table table td {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: baseline;
+  width: 90%;
+  margin-top: 1rem;
+}
+form div label {
+  font-weight: 500;
+}
+form div input,
+form div select {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #aeaeaf;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+form div input:focus,
+form div select:focus {
+  outline: none;
+  border-bottom: 2px solid #000;
+}
+form div hr {
+  border-top: 1px solid #c4c5c7;
+  width: 90%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+form div.controls {
+  flex-direction: row;
+  justify-content: left;
+  margin-bottom: 1rem;
+}
+
+section.panel div.controls-main form.busca {
+  width: 30% !important;
+  align-items: flex-end;
+}
+section.panel div.controls-main form.busca input {
+  border: none;
+  border-bottom: 1px solid #aeaeaf;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+section.panel div.controls-main form.busca input:active, section.panel div.controls-main form.busca input:focus {
+  outline: none;
+  border-bottom: 2px solid #000;
+}
+section.panel div.table {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+section.panel div.table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+section.panel div.table table tr {
+  border-bottom: 1px solid #aeaeaf;
+}
+section.panel div.table table tr td {
+  text-align: center;
+  padding: 0.5rem;
+}
+section.panel div.table table thead tr td {
+  font-weight: 600;
+}
+
+/*# sourceMappingURL=style.css.map */

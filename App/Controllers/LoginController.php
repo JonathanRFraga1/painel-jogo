@@ -8,14 +8,17 @@ use Exception;
 
 class LoginController extends AbstractController
 {
-    public ?object $defaultModel;
+    /**
+     * @var LoginModel
+     */
+    public LoginModel $defaultModel;
 
     public function __construct()
     {
         parent::__construct();
 
         try {
-            $this->defaultModel = new LoginModel();
+            $this->defaultModel = $this->loadModel(LoginModel::class);
         } catch (Exception $e) {
             $this->error = $e;
             $this->includeViews('_includes/errors/error_500');
@@ -39,8 +42,7 @@ class LoginController extends AbstractController
     {
         $params = $_POST;
 
-        if (
-            !isset($params['login']) ||
+        if (!isset($params['login']) ||
             $params['login'] == '' ||
             !isset($params['senha']) ||
             $params['senha'] == ''

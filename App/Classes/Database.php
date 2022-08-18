@@ -23,6 +23,7 @@ class Database
 
     /**
      * Ultimo id inserido no banco de dados
+     *
      * @var int $lastInsertId
      */
     public int $lastInsertId;

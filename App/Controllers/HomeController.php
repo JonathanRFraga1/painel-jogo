@@ -8,6 +8,9 @@ use Exception;
 
 class HomeController extends AbstractController
 {
+    /**
+     * @var object|HomeModel|mixed|null
+     */
     private ?object $defaultModel;
 
     public function __construct()
@@ -19,7 +22,7 @@ class HomeController extends AbstractController
         }
 
         try {
-            $this->defaultModel = new HomeModel();
+            $this->defaultModel = $this->loadModel(HomeModel::class);
         } catch (Exception $e) {
             $this->error = $e;
             $this->includeViews('_includes/errors/error_500');

@@ -8,7 +8,10 @@ use Exception;
 
 class CategoriasController extends AbstractController
 {
-    private ?object $defaultModel;
+    /**
+     * @var CategoriasModel
+     */
+    private CategoriasModel $defaultModel;
 
     public function __construct()
     {
@@ -19,7 +22,7 @@ class CategoriasController extends AbstractController
         }
 
         try {
-            $this->defaultModel = new CategoriasModel();
+            $this->defaultModel = $this->loadModel(CategoriasModel::class);
         } catch (Exception $e) {
             die($e->getMessage());
         }
@@ -27,6 +30,7 @@ class CategoriasController extends AbstractController
 
     public function index()
     {
+        $this->defaultModel->returnCategorias();
         $this->includeViews('categorias/categorias-view');
     }
 }

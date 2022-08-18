@@ -8,7 +8,10 @@ use Exception;
 
 class ConfiguracoesController extends AbstractController
 {
-    private ?object $defaultModel;
+    /**
+     * @var ConfiguracoesModel
+     */
+    private ConfiguracoesModel $defaultModel;
 
     public function __construct()
     {
@@ -19,7 +22,7 @@ class ConfiguracoesController extends AbstractController
         }
 
         try {
-            $this->defaultModel = new ConfiguracoesModel();
+            $this->defaultModel = $this->loadModel(ConfiguracoesModel::class);
         } catch (Exception $e) {
             $this->error = $e;
             $this->includeViews('_includes/errors/error_500');

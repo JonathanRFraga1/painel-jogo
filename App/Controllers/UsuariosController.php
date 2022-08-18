@@ -8,7 +8,10 @@ use Exception;
 
 class UsuariosController extends GlobalFunctions
 {
-    private ?object $defaultModel;
+    /**
+     * @var UsuariosModel
+     */
+    private UsuariosModel $defaultModel;
 
     public function __construct()
     {
@@ -20,7 +23,7 @@ class UsuariosController extends GlobalFunctions
         }
 
         try {
-            $this->defaultModel = new UsuariosModel();
+            $this->defaultModel = $this->loadModel(UsuariosModel::class);
         } catch (Exception $e) {
             $this->error = $e;
             $this->includeViews('_includes/errors/error_500');
